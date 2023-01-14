@@ -1,0 +1,50 @@
+#old function
+def oldwordcheck(message):
+    #keyword list
+    procedures = ["price", "info", "stats"]
+
+    #checks for a match between each word in the message and the keyword list
+    for word in procedures:
+        if word in message:
+            return word
+    return "no procedure"
+
+#shiny new checker
+def NewWordCheck(message):
+    #keyword dictionary
+    keywords = {
+        "price" : ["price", "value", "cost", "rubles"],
+        "info" : ["info", "information", "details", "facts"],
+        "stats" : ["stats", "statistics", "data"]
+    }
+
+    #loops through each word in the message
+    for searchWord in message.split():
+        #loops through each key in the dictionary
+        for key, value in keywords.items() :
+            #checks for a match between the message word and either the key or the values associated to it
+            if value.__contains__(searchWord):
+                return key
+
+    return "no procedure"
+
+#temp function for testing purpose
+def stats():
+    print("this is the statistics function")
+
+#temp function for testing purpose
+def price():
+    print("this is the price function")
+
+#temp function for testing purpose
+def info():
+    print("this is the information function")
+
+#temp user message for testing purpose
+message = "how many roubles does the ak101 cost"
+procedure = NewWordCheck(message)
+
+if procedure == "no procedure":
+    print("error, no function found/nothing to do")
+else:
+    eval(procedure + "()")
